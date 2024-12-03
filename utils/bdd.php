@@ -36,9 +36,6 @@ class Database {
 
 try {
     $db = Database::getConnection();
-    $stmt = $db->query("SELECT * from trackable.users");
-    echo "Databases: " . $stmt->fetch();
-
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 }

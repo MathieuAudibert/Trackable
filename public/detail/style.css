@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+.gros-rec{
+    display: flex;
+    height: 100vh;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.rectangle-infos{
+    background-color: #eadfcc;
+    width: 45%;
+    border-radius: 5px;
+}
+
+.rectangle-infos h1{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.rectangle-infos p{
+    margin-left: 10px;
+}
+
+.rectangle-container {
+    width: 50%;
+}
+
+.rectangle-heures{
+    font-size: 10px;
+    height: 50%;
+    margin: 1%;
+}
+
+#gauche{
+    float: left;
+}
+
+#droite{
+    float: right;
+}
+
+.rectangle-map{
+    height: 50%;
+}

@@ -1,6 +1,11 @@
 <?php
-
 declare(strict_types=1);
+
+session_start();
+unset($_SESSION['connecte']);
+if (!isset($_SESSION['connecte'])) {
+    $_SESSION['connecte'] = 'true';
+}   
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -32,9 +37,17 @@ function route_request(): void
                 controller_register();
                 break;
             case '/detail':
+                if ($_SESSION['connecte'] !== 'true') {
+                    header('Location: /login');
+                    exit();
+                }
                 controller_detail();
                 break;
             case '/logout':
+                if ($_SESSION['connecte'] !== 'true') {
+                    header('Location: /login'); 
+                    exit();
+                }
                 require('logout.php');
                 break;
         }
