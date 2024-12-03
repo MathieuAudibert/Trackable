@@ -1,7 +1,7 @@
 <?php
 
-require_once '../vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+require_once dirname(__DIR__, 1) . '\vendor\autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__ ,1));
 $dotenv->load();
 
 class Database {
@@ -36,8 +36,8 @@ class Database {
 
 try {
     $db = Database::getConnection();
-    $stmt = $db->query("SELECT VERSION()");
-    echo "Database version: " . $stmt->fetch()[0];
+    $stmt = $db->query("SELECT * from trackable.users");
+    echo "Databases: " . $stmt->fetch();
 
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
