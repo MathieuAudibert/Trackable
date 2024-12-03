@@ -1,0 +1,16 @@
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+.logo {
+    width: 5%;
+}
+
+.button{
+    background-color: yellow;
+    border: none;
+    cursor: pointer;
+}
