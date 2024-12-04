@@ -32,8 +32,18 @@
 
 .rectangle-heures{
     font-size: 10px;
-    height: 50%;
+    height: 10%;
     margin: 1%;
+}
+
+.rectangle-map{
+    height: 80%;
+    margin: 1%;
+}
+
+#map {
+    height: 100vh;
+    width: 100%;
 }
 
 #gauche{
