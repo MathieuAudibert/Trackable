@@ -10,7 +10,7 @@ function controller_login(): void
         model_login();
         view_login();
     } catch (Exception $e) {
-        error_log(message: $e->getMessage(), message_type: 3, destination: '../../utils/logs/errors.log');
+        error_log(message: $e->getMessage() . PHP_EOL, message_type: 3, destination: '../../utils/logs/errors.log');
         echo "Erreur interne";
     }
 }

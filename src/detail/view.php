@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function view_detail(): void
+function view_detail($data): void
 {
 ?>
     <!DOCTYPE html>
@@ -24,7 +24,8 @@ function view_detail(): void
 
     <div class="gros-rec">
     <div class="rectangle-infos">
-            <h1>Detail du colis n° : <?php echo htmlspecialchars('a'); ?></h1>
+        <?php foreach ($data as $row) : ?>
+            <h1>Detail du colis n° : <?php echo htmlspecialchars(($row['colisId'])); ?></h1>
             <p>Nom du colis : <?php echo htmlspecialchars('a'); ?></p>
             <p>Prenom de l'agent de livraison : <?php echo htmlspecialchars('a'); ?></p>
             <p>Nom de l'agent de livraison : <?php echo htmlspecialchars('a'); ?></p>
@@ -36,16 +37,16 @@ function view_detail(): void
             <p>Problèmes encontrées : <?php echo htmlspecialchars('a'); ?></p>
             <p>Adresse de départ : <?php echo htmlspecialchars('a'); ?></p>
             <p>Adresse d'arrivée : <?php echo htmlspecialchars('a'); ?></p>
+        <?php endforeach; ?>
         </div>
         <div class="rectangle-container">
             <div class="rectangle-heures">
-                <h1 id="gauche">Heure de départ</h1><h1 id="droite">Heure d'arrivée</h1>
-                <!--- AFFICHER date_dep etc... --->
+                <h1 id="gauche">Heure de départ : <?php echo htmlspecialchars('a')?></h1><h1 id="droite">Heure d'arrivée : <?php echo htmlspecialchars('b')?></h1>
             </div>
         
             <div class="rectangle-map">
                 <h1>Map</h1>
-                <!--- AFFICHER MAP GOOGLE API --->
+                
             </div>
         </div>
     </div>
