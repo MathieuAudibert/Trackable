@@ -43,15 +43,15 @@ function view_register(): void
                 </div>
 
                 <div class="form-group">
-                    <label for="prenom">Prenom/label>
+                    <label for="prenom">Prenom</label>
                     <input type="text" id="prenom" name="prenom" placeholder="Entrez votre prenom">
                 </div>
 
                 <div class="form-group">
-                    <input type="radio" id="role" name="role" required>
-                    <label for="role">Agent de livraison</label>
-                    <input type="radio" id="role" name="role" required>
-                    <label for="role">Agent de coordination</label>
+                    <input type="radio" id="livraison" name="role">
+                    <label for="livraison">Agent de livraison</label>
+                    <input type="radio" id="coordination" name="role" >
+                    <label for="coordination">Agent de coordination</label>
                 </div>
 
                 <div class="form-group">
