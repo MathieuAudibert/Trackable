@@ -15,6 +15,7 @@ function view_register(): void
         <link rel="stylesheet" href="public/register/style.css">
         <link rel="stylesheet" href="public/header.css">
         <script src="public/scripts/ongletsReg.js" defer></script>
+        <script src="public/scripts/passwdValidation.js" defer></script>
         <link rel="icon" type="image/x-icon" href="/public/images/truck-svgrepo-com.svg">
         <div id="header">
             <a href="/index.php"><img src="public/images/truck-svgrepo-com.svg" alt="logo" class="logo"></a>
@@ -52,10 +53,6 @@ function view_register(): void
                             <input type="radio" id="role-agentcoord" name="role" value="agentcoord">
                             <label for="role-agentcoord">Agent de coordination</label>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cle_entreprise">Clé (fournie par votre entreprise) *</label>
-                        <input type="text" id="cle_entreprise" name="cle_entreprise" placeholder="Entrez votre clé" required>
                     </div>
                 </div>
 

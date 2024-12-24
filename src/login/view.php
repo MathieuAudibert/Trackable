@@ -38,7 +38,12 @@ function view_login(): void
                     <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
                 </div>
 
-                <button type="submit" class="login-button">Se connecter</button>
+                <div class="form-group">
+                    <label for="cle_entreprise">Clé (fournie par votre entreprise) *</label>
+                    <input type="text" id="cle_entreprise" name="cle_entreprise" placeholder="Entrez votre clé" required>
+                </div>
+
+                <button type="submit" class= "login-button">Se connecter</button>
             </form>
 
         </div>
