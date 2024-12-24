@@ -50,6 +50,9 @@ function route_request(): void
                 }
                 require('logout.php');
                 break;
+            default:
+                controller_accueil();
+                break;
         }
     } catch (Exception $e) {
         http_response_code(500);

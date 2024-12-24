@@ -14,6 +14,7 @@ function view_detail($data): void
         <title>Trackable | Detail du colis</title>
         <link rel="stylesheet" href="public/header.css">
         <link rel="stylesheet" href="public/detail/style.css">
+        <link rel="icon" type="image/x-icon" href="/public/images/truck-svgrepo-com.svg">
         <div id="header">
             <a href="/index.php"><img src="public\images\truck-svgrepo-com.svg" alt="logo" class="logo"></a>
             <a href="/register"><button class="button">S'inscrire</button></a>

@@ -11,7 +11,8 @@
 }
 
 .button{
-    background-color: yellow;
+    background-color: #dddd;
+    color: black;
     border: none;
     cursor: pointer;
 }

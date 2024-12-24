@@ -14,64 +14,66 @@ function view_register(): void
         <title>Trackable | Inscription</title>
         <link rel="stylesheet" href="public/register/style.css">
         <link rel="stylesheet" href="public/header.css">
+        <script src="public/scripts/ongletsReg.js" defer></script>
+        <link rel="icon" type="image/x-icon" href="/public/images/truck-svgrepo-com.svg">
         <div id="header">
-            <a href="/index.php"><img src="public\images\truck-svgrepo-com.svg" alt="logo" class="logo"></a>
+            <a href="/index.php"><img src="public/images/truck-svgrepo-com.svg" alt="logo" class="logo"></a>
             <a href="/login"><button class="button">Se connecter</button></a>
         </div>
-
         <hr>
     </head>
 
     <body>
         <div class="form-wrapper">
-
-            <form action="/register" method="POST" class="register-container">
+            <form action="/utils/formulaires/register.php" method="POST" class="register-container">
                 <h1>Inscription</h1>
-                <div class="form-group">
-                    <label for="username">Nom d'utilisateur</label>
-                    <input type="text" id="username" name="username" placeholder="Entrez votre nom d'utilisateur" required>
+
+                <div class="form-page">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nom">Nom *</label>
+                        <input type="text" id="nom" name="nom" placeholder="Entrez votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="prenom">Prénom *</label>
+                        <input type="text" id="prenom" name="prenom" placeholder="Entrez votre prénom" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+                <div class="form-page" style="display: none;">
+                    <div class="form-group">
+                        <label for="role">Rôle *</label>
+                        <div>
+                            <input type="radio" id="role-agentlivr" name="role" value="agentlivr">
+                            <label for="role-agentlivr">Agent de livraison</label>
+                            <input type="radio" id="role-agentcoord" name="role" value="agentcoord">
+                            <label for="role-agentcoord">Agent de coordination</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cle_entreprise">Clé (fournie par votre entreprise) *</label>
+                        <input type="text" id="cle_entreprise" name="cle_entreprise" placeholder="Entrez votre clé" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="Nom">Nom</label>
-                    <input type="text" id="nom" name="nom" placeholder="Entrez votre nom">
+                    <div class="form-page" style="display: none;">
+                    <div class="form-group">
+                        <label for="password">Mot de passe *</label>
+                        <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirmer le mot de passe *</label>
+                        <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirmez votre mot de passe" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="prenom">Prenom</label>
-                    <input type="text" id="prenom" name="prenom" placeholder="Entrez votre prenom">
-                </div>
-
-                <div class="form-group">
-                    <input type="radio" id="livraison" name="role">
-                    <label for="livraison">Agent de livraison</label>
-                    <input type="radio" id="coordination" name="role" >
-                    <label for="coordination">Agent de coordination</label>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Mot de passe *</label>
-                    <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirm-password">Confirmer le mot de passe</label>
-                    <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirmez votre mot de passe" required>
-                </div>
-
-                <button type="submit">S'inscrire</button>
+                <button type="button" id="prev-btn" onclick="showPage(currentPage - 1)" style="display: none;">Précédent</button>
+                <button type="button" id="next-btn" onclick="showPage(currentPage + 1)">Suivant</button>
+                <button type="submit" id="submit-btn" style="display: none;">S'inscrire</button>
             </form>
-
         </div>
     </body>
 

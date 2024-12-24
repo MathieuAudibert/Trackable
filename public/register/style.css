@@ -1,11 +1,4 @@
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #ffffff; 
     font-family: Arial, sans-serif;
 }
 
@@ -14,6 +7,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin-top: 5%;
 }
 
 .register-container {
@@ -60,7 +54,7 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
     outline: none;
-    border-color: #EE5D5D; 
+    border-color: #419c9c; 
 }
 
 
@@ -69,7 +63,7 @@ button {
     padding: 10px;
     font-size: 16px;
     color: #ffffff;
-    background-color: #EE5D5D;
+    background-color: #419c9c;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -78,5 +72,44 @@ button {
 }
 
 button:hover {
-    background-color: #ee905d; 
+    background-color: #419c9c; 
+}
+
+.form-page {
+    display: none; 
+}
+.form-page:first-child {
+    display: block;
+}
+
+#prev-btn {
+    background-color: red;
+    color: #ffffff;
+}
+
+#submit-btn {
+    background-color: green;
+    color: #ffffff;
+}
+
+input[type="radio"] {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+label[for="role"] {
+    display: inline-block;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+input[type="radio"] + label {
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.invalid {
+    border: 2px solid red;
+    background-color: #ffe6e6; 
 }
