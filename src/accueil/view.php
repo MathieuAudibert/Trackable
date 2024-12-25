@@ -18,6 +18,7 @@ function view_accueil(): void
         <div id="header">
             <a href="/index.php"><img src="\public\images\truck-svgrepo-com.svg" alt="logo" class="logo"></a>
             <a href="/register"><button class="button">S'inscrire</button></a>
+            <a href="/login"><button id="secon" class="button">Se connecter</button></a>
         </div>
         <hr>
     </head>
