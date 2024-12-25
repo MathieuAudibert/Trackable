@@ -23,8 +23,6 @@ function view_login(): void
     </head>
 
     <body>
-
-
         <div class="form-wrapper">
             <form action="/login" method="POST"class="login-container">
                 <h1>Connexion</h1>
@@ -34,8 +32,8 @@ function view_login(): void
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+                    <label for="mdp">Mot de passe</label>
+                    <input type="password" id="mdp" name="mdp" placeholder="Entrez votre mot de passe" required>
                 </div>
 
                 <div class="form-group">
