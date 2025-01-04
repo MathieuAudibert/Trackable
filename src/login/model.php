@@ -27,7 +27,12 @@ function model_login(): bool
 
             if ($user && ($mdp == $user['mdp'])) { // a modifier par password_verify($mdp, $user['mdp']) 
                 session_start();
-                $_SESSION['user'] = $user;
+                $_SESSION['user']['email'] = $user['email'];
+                $_SESSION['user']['cle_entreprise'] = $user['cle_entreprise'];
+                $_SESSION['user']['nom'] = $user['nom'];
+                $_SESSION['user']['prenom'] = $user['prenom'];
+                $_SESSION['user']['role'] = $user['role'];
+                $_SESSION['connecte'] = 'true';
                 header('Location: /index.php'); 
                 exit;
             } else {

@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 session_start();
-unset($_SESSION['connecte']);
+
 if (!isset($_SESSION['connecte'])) {
-    $_SESSION['connecte'] = 'true';
+    $_SESSION['connecte'] = 'false';
 }   
 
 ini_set('display_errors', 1);
@@ -16,6 +16,7 @@ require_once __DIR__ . '/src/detail/controller.php';
 require_once __DIR__ . '/src/login/controller.php';
 require_once __DIR__ . '/src/register/controller.php';
 require_once __DIR__ . '/src/logout/controller.php';
+require_once __DIR__ . '/src/perfs/perf.php';
 
 
 function route_request(): void
@@ -49,6 +50,9 @@ function route_request(): void
                     exit();
                 }
                 require('logout.php');
+                break;
+            case '/perf':
+                perf();
                 break;
             default:
                 controller_accueil();
