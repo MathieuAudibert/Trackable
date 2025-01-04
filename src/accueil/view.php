@@ -66,7 +66,7 @@ function view_accueil(): void
                         </div>
                     </div>
                 <?php endforeach; ?>
-                <div class="carte">
+                <div class="carte" id="carte-plus">
                     <button onclick="window.location.href='/creation_carte';">+</button>
                 </div>
             </div>
