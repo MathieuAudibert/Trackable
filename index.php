@@ -49,7 +49,7 @@ function route_request(): void
                     header('Location: /login'); 
                     exit();
                 }
-                require('logout.php');
+                controller_logout();
                 break;
             case '/perf':
                 perf();

@@ -32,20 +32,48 @@ function view_accueil(): void
         <hr>
     </head>
     <body>
-        <h1> Trackable. </h1>
-        <div id="mouvements-container">
-            <div class="carte">
-                <p>Mouvement 1</p>
-            </div>
+        <div id="titre">
+            <h1> Trackable. </h1>
         </div>
+        <hr id="trait-titre">
+        <?php if ($_SESSION['connecte'] === 'false') : ?>
+            <div id="connexion">
+                <h2>Connectez-vous pour accéder à vos mouvements</h2>
+            </div>
+        <?php else : ?>
+            <div class="recherche">
+                <input type="text" id="recherche" name="recherche" placeholder="Nom du colis">
+                <input type="text" id="ville-dep" name="villedep" placeholder="Ville de départ">
+                <input type="text" id="ville-arr" name="villearr" placeholder="Ville d'arrivée">
+                <label for="date-dep">Date de départ</label>
+                <input type="date" id="date-dep">
+                <label for="date-arr">Date d'arrivée</label>
+                <input type="date" id="date-arr">
+                <button id="recherche-btn">Rechercher</button>
+            </div>
+            <div id="mouvements-container">
+                <?php foreach($_SESSION['fetch_mvmts'] as $mvmt) : ?>
+                    <div class="carte">
+                        <div class="titre-carte">
+                            <h2>Colis n°<?php echo $mvmt['id_colis'] ?></h2>
+                            <h3><?php echo $mvmt['nom'] ?></h3>
+                        </div>
+                        <div class="infos-carte">
+                            <p>Adresse de départ : <?php echo $mvmt['lieu_depart'] ?></p>
+                            <p>Adresse d'arrivée : <?php echo $mvmt['lieu_arrivee'] ?></p>
+                            <p>Date de départ : <?php echo $mvmt['date_dep'] ?></p>
+                            <p>Date d'arrivée : <?php echo $mvmt['date_arr'] ?></p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <div class="carte">
+                    <button onclick="window.location.href='/creation_carte';">+</button>
+                </div>
+            </div>
+        <?php endif; ?>
     </body>
 
     </html>
-    <script>
-    window.onbeforeunload = function() {
-        <?php session_destroy(); ?>
-    }
-    </script>
 <?php
 }
 ?>

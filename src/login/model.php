@@ -32,6 +32,7 @@ function model_login(): bool
                 $_SESSION['user']['nom'] = $user['nom'];
                 $_SESSION['user']['prenom'] = $user['prenom'];
                 $_SESSION['user']['role'] = $user['role'];
+                $_SESSION['user']['id_users'] = $user['id_users'];
                 $_SESSION['connecte'] = 'true';
                 header('Location: /index.php'); 
                 exit;
