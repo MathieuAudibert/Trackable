@@ -42,7 +42,7 @@ function route_request(): void
                     header('Location: /login');
                     exit();
                 }
-                controller_detail();
+                controller_detail($_SESSION['colis_id_new']);
                 break;
             case '/logout':
                 if ($_SESSION['connecte'] !== 'true') {

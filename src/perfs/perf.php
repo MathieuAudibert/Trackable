@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 function perf(): void
 {
-    var_dump($_SESSION['user'])
 ?>
     <!DOCTYPE html>
     <html lang="fr-FR" dir="ltr">
@@ -23,7 +22,15 @@ function perf(): void
     </head>
 
     <body>
-    
+        <?php var_dump($_SESSION['user']) ?>
+        <br>
+        <hr>
+        <br>
+        <?php var_dump($_SESSION['fetch_mvmts']) ?>
+        <br>
+        <hr>
+        <br>
+        <?php var_dump($_SESSION['colis_id_new']) ?>
     </body>
 
     </html>

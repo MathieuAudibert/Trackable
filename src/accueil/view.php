@@ -54,6 +54,8 @@ function view_accueil(): void
             <div id="mouvements-container">
                 <?php foreach($_SESSION['fetch_mvmts'] as $mvmt) : ?>
                     <div class="carte">
+                        <?php $_SESSION['colis_id_new'] = $mvmt['id_colis'] ?>
+                        <a href="/detail">
                         <div class="titre-carte">
                             <h2>Colis n°<?php echo $mvmt['id_colis'] ?></h2>
                             <h3><?php echo $mvmt['nom'] ?></h3>
@@ -64,6 +66,7 @@ function view_accueil(): void
                             <p>Date de départ : <?php echo $mvmt['date_dep'] ?></p>
                             <p>Date d'arrivée : <?php echo $mvmt['date_arr'] ?></p>
                         </div>
+                        </a>
                     </div>
                 <?php endforeach; ?>
                 <div class="carte" id="carte-plus">

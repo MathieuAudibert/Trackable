@@ -1,5 +1,7 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    overflow: auto;
 }
 
 #titre{
@@ -33,6 +35,8 @@ body {
     grid-template-rows: repeat(6, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
+    text-decoration: none;
+
 }
 
 .carte{
@@ -40,8 +44,4 @@ body {
     padding: 10px;
 }
 
-#carte-plus{
-
-
-}
 
