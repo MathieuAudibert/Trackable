@@ -31,7 +31,7 @@ function model_login(): bool
                 $_SESSION['user']['cle_entreprise'] = $user['cle_entreprise'];
                 $_SESSION['user']['nom'] = $user['nom'];
                 $_SESSION['user']['prenom'] = $user['prenom'];
-                $_SESSION['user']['role'] = $user['role'];
+                $_SESSION['user']['role_user'] = $user['role_user'];
                 $_SESSION['user']['id_users'] = $user['id_users'];
                 $_SESSION['connecte'] = 'true';
                 header('Location: /index.php'); 
