@@ -1,19 +1,77 @@
-
 #header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: auto;
+    padding: 15px 20px;
+    background-color: #ffffff; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
 }
 
 .logo {
-    width: 5%;
+    width: 40px; 
+    height: auto;
+    transition: transform 0.3s ease;
 }
 
-.button{
-    background-color: #dddd;
-    color: black;
-    border: none;
-    cursor: pointer;
+.logo:hover {
+    transform: scale(1.1); 
+}
 
+.button {
+    background-color: #0056b3;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background-color: #003d80; 
+    transform: translateY(-2px);
+}
+
+#header p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400; 
+    color: #555; 
+    white-space: nowrap;
+}
+
+#header > *:not(:first-child) {
+    margin-left: 20px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #e6e6e6; 
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    #header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #header > *:not(:first-child) {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .button {
+        width: 100%; 
+        text-align: center;
+    }
+
+    #header p {
+        font-size: 12px;
+    }
 }

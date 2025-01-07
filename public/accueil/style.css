@@ -1,61 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     overflow: auto;
+    background-color: #f9f9f9; 
+    display: flex;
+    flex-direction: column;
 }
-
-#titre{
+#titre {
     display: flex;
     justify-content: center;
     font-size: 40px;
+    margin-top: 20px;
+    color: #333;
 }
 
-#trait-titre{
-    width: 10%;
-    border: 2px solid black;
-    margin-left: 1%;
+#hr-titre {
+    width: 20%;
+    border: 1px solid black;
+    margin-left: 2rem;
+    background-color: black;
 }
 
 .recherche {
-    margin-left: 1%;
-    margin-bottom: 1%;
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.recherche button {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    width: 100%;
 }
 
 .recherche input {
-    box-sizing: border-box;
-    border: 1px solid black;
-    border-radius: 15px;
-    padding: 5px;
+    padding: 0.2rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    width: 100%;
 }
 
-.recherche input[type="date"]{
-    opacity: 0.7;
+.recherche input {
+    background-color: #f8fafc;
 }
 
-#mouvements-container{
-    display: grid;
-    margin-left: 1%;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    text-decoration: none;
-
+.recherche input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-.carte{
-    background-color: #ddd;
-    padding: 10px;
-    cursor: pointer;
-    text-decoration: none;
+.recherche label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #64748b;
+    margin-top: 0.5rem;
 }
-#carte-plus {
-    cursor: pointer;
-}
-#carte-plus button{
-    background-color: transparent;
+
+#recherche-btn {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: 500;
     border: none;
-    margin-left: 40%;
-    margin-top: 50%;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+#recherche-btn:hover {
+    background-color: #2563eb;
+}
+
+#mouvements-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 15px;
+    margin: 20px 1%;
+}
+
+.carte {
+    background-color: #fff;
+    padding: 20px;
+    margin-left: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.carte a {
+    text-decoration: none;
+    color: #333;
+}
+
+.carte:hover {
+    transform: translateY(-5px);
+}
+
+.titre-carte h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.titre-carte h3 {
+    font-size: 16px;
+    color: #555;
+}
+
+.infos-carte p {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0;
+}
+
+#carte-plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#carte-plus button {
+    background-color: white;
     font-size: 40px;
+    border: none;
+    padding: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    #titre h1 {
+        font-size: 30px;
+    }
+
+    .recherche {
+        width: auto;
+        margin: 1rem;
+    }
+
+    .carte {
+        padding: 15px;
+    }
+
+    #recherche-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #header .button {
+        width: 100%;
+        margin-top: 10px;
+    }
 }

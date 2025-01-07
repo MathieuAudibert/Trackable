@@ -11,10 +11,13 @@ function signaler_probleme(): void
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Trackable | Signaler un probleme</title>
-        <link rel="stylesheet" href="/public/login/style.css">
+        <link rel="stylesheet" href="/public/signaler/style.css">
         <link rel="stylesheet" href="/public/header.css">
         <link rel="icon" type="image/x-icon" href="/public/images/truck-svgrepo-com.svg">
-        <?php if ($_SESSION['connecte'] === 'false') : ?>
+    </head>
+
+    <body>
+    <?php if ($_SESSION['connecte'] === 'false') : ?>
             <div id="header">
                 <a href="/index.php"><img src="\public\images\truck-svgrepo-com.svg" alt="logo" class="logo"></a>
                 <a href="/register"><button class="button">S'inscrire</button></a>
@@ -28,17 +31,16 @@ function signaler_probleme(): void
             </div>
         <?php endif; ?>
         <hr>
-    </head>
-
-    <body>
-        <form action="../../utils/formulaires/signaler_probleme.php" method="POST">
-            <h1>Signaler un problème</h1>
-            <input type="text" name="probleme" placeholder="Problème rencontré" required>
-            <textarea name="informations" placeholder="Informations supplémentaires" required></textarea>
-            <input type="hidden" name="id_colis" value="<?php echo $_POST['id_colis'] ?>">
-            <input type="hidden" name="id_users" value="<?php echo $_SESSION['user']['id_users'] ?>">
-            <button type="submit">Signaler</button>
-        </form>
+        <div class="allContainer">
+            <form action="../../utils/formulaires/signaler_probleme.php" method="POST">
+                <h1>Signaler un problème</h1>
+                <input type="text" name="probleme" placeholder="Problème rencontré" required>
+                <textarea name="informations" placeholder="Informations supplémentaires" required></textarea>
+                <input type="hidden" name="id_colis" value="<?php echo $_POST['id_colis'] ?>">
+                <input type="hidden" name="id_users" value="<?php echo $_SESSION['user']['id_users'] ?>">
+                <button type="submit">Signaler</button>
+            </form>
+        </div>
     </body>
 
     </html>
