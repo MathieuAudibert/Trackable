@@ -14,6 +14,7 @@ if (empty($_POST)){
     $id_mouv = $_POST['id_colis'];
     $probleme = $_POST['probleme'];
     $infos = $_POST['informations'];
+    $user_id = $_POST['id_users'];
 
     $query = "UPDATE colis SET problemes = :probleme WHERE id_colis = :id_colis";
     $query2 = "UPDATE colis SET informations = :infos WHERE id_colis = :id_colis";
@@ -34,11 +35,11 @@ if (empty($_POST)){
     $stmt3 = $pdo->prepare($query3);
     $stmt3->execute([
         'mouv_id' => $id_mouv,
-        'user_id' => $_SESSION['user']['id_users'],
+        'user_id' => $user_id,
         'colis_id' => $id_mouv,
         'action' => 'Signalement d\'un problème'
     ]);
 
 
-    header('Location: /login');
+    header('Location: /detail?id=' . $id_mouv);
 }

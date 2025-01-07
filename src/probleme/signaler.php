@@ -36,6 +36,7 @@ function signaler_probleme(): void
             <input type="text" name="probleme" placeholder="Problème rencontré" required>
             <textarea name="informations" placeholder="Informations supplémentaires" required></textarea>
             <input type="hidden" name="id_colis" value="<?php echo $_POST['id_colis'] ?>">
+            <input type="hidden" name="id_users" value="<?php echo $_SESSION['user']['id_users'] ?>">
             <button type="submit">Signaler</button>
         </form>
     </body>
