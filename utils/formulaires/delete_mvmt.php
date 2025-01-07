@@ -6,9 +6,12 @@ error_reporting(E_ALL);
 require_once dirname(__DIR__, 1) . '/bdd.php';
 
 if (empty($_POST)){
-    header('Location: /register');
-    exit();
-} else {
     header('Location: /detail?id=' . $_POST['colis_id']);
     exit();
+} else {
+    $pdo = Database::getConnection();
+    
+    $query="DELETE FROM mouvement where id_mouvement = :id_mouvement";
+
+    header('Location: /');
 }

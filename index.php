@@ -20,6 +20,8 @@ require_once __DIR__ . '/src/perfs/perf.php';
 require_once __DIR__ . '/src/perfs/logi.php';
 require_once __DIR__ . '/src/creation_mouvement/controller.php';
 require_once __DIR__ . '/utils/formulaires/form_succes.php';
+require_once __DIR__ . '/src/probleme/signaler.php';
+
 
 function route_request(): void
 {
@@ -38,6 +40,9 @@ function route_request(): void
                 break;
             case '/register':
                 controller_register();
+                break;
+            case '/signaler-un-probleme':
+                signaler_probleme();
                 break;
             case '/detail?id='. $_GET['id']:
                 if ($_SESSION['connecte'] !== 'true') {

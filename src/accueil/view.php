@@ -34,7 +34,7 @@ function view_accueil(): void
     </head>
     <body>
         <div id="titre">
-            <h1> Trackable. </h1>
+            <h1> Trackable📦 </h1>
         </div>
         <hr id="trait-titre">
         <?php if ($_SESSION['connecte'] === 'false') : ?>

@@ -30,7 +30,7 @@ function perf(): void
         <br>
         <hr>
         <br>
-        <?php var_dump($_SESSION['colis_id_new']) ?>
+        <?php var_dump($_SESSION['connecte']) ?>
         <br>
         <hr>
         <br>

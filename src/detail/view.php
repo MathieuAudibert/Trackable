@@ -51,6 +51,9 @@ function view_detail($data): void
             <p>Nom Prenom de l'agent de coordination responsable : <?php echo htmlspecialchars($colismvm['user_nom']. ' ' .$colismvm['prenom'] ); ?></p>
             <p>Informations supplémentaires : <?php echo htmlspecialchars($colismvm['informations']); ?></p>
             <p>Problèmes encontrées : <?php echo htmlspecialchars($colismvm['problemes']); ?></p>
+            <form action="/signaler-un-probleme" method="POST">
+                <button type="submit" name="id_colis" id="signaler-probleme" value="<?php echo $colismvm['id_colis']; ?>">Signaler un problème 🚩</button>
+            </form>
             <p>Adresse de départ : <?php echo htmlspecialchars($colismvm['lieu_depart']); ?></p>
             <p>Etape : <?php echo htmlspecialchars($colismvm['etape']); ?></p>
             <p>Adresse d'arrivée : <?php echo htmlspecialchars($colismvm['lieu_arrivee']); ?></p>
@@ -60,7 +63,8 @@ function view_detail($data): void
                     <button type="submit">Modifier</button>
                 </form>
                 <form id="modify" action="../../utils/formulaires/delete_mvmt.php" method="POST">
-                    <button type="submit">Supprimer</button>
+                    <input type="text" name="id_mouv" value="<?php echo $colismvm['id_mouv']; ?>" hidden>
+                    <button type="submit" name="id_colis" value="<?php echo $colismvm['id_colis']; ?>">Supprimer</button>
                 </form>
             <?php endif; ?>
         </div>
