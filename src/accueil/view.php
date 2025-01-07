@@ -16,6 +16,7 @@ function view_accueil(): void
         <link rel="stylesheet" href="public\header.css">
         <link rel="stylesheet" href="public\accueil\style.css">
         <link rel="icon" type="image/x-icon" href="/public/images/truck-svgrepo-com.svg">
+        <script src="public/scripts/rechercheAccueil.js" defer></script>
         <?php if ($_SESSION['connecte'] === 'false') : ?>
             <div id="header">
                 <a href="/index.php"><img src="\public\images\truck-svgrepo-com.svg" alt="logo" class="logo"></a>
@@ -53,7 +54,11 @@ function view_accueil(): void
             </div>
             <div id="mouvements-container">
                 <?php foreach($_SESSION['fetch_mvmts'] as $mvmt) : ?>
-                    <div class="carte">
+                    <div class="carte" data-nom="<?php echo strtolower($mvmt['nom']); ?>" 
+                        data-ville-dep="<?php echo strtolower($mvmt['lieu_depart']); ?>" 
+                        data-ville-arr="<?php echo strtolower($mvmt['lieu_arrivee']); ?>" 
+                        data-date-dep="<?php echo $mvmt['date_dep']; ?>" 
+                        data-date-arr="<?php echo $mvmt['date_arr']; ?>">
                         <a href="/detail?id=<?php echo $mvmt['id_colis']; ?>">
                         <div class="titre-carte">
                             <h2>Colis n°<?php echo $mvmt['id_colis'] ?></h2>
