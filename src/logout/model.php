@@ -8,6 +8,7 @@ function model_logout(): void
 {
   try {
       session_destroy();
+      header('Location: /');
       
     } catch (Exception $e) {
         error_log($e->getMessage(), 3, '../../utils/logs/errors.log');

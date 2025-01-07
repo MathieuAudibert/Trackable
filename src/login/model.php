@@ -22,10 +22,8 @@ function model_login(): bool
 
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            var_dump($_POST);
-            var_dump($user);
 
-            if ($user && ($mdp == $user['mdp'])) { // a modifier par password_verify($mdp, $user['mdp']) 
+            if ($user && (password_verify($mdp, $user['mdp']))) { // a modifier par password_verify($mdp, $user['mdp']) 
                 session_start();
                 $_SESSION['user']['email'] = $user['email'];
                 $_SESSION['user']['cle_entreprise'] = $user['cle_entreprise'];

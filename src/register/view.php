@@ -47,13 +47,16 @@ function view_register(): void
 
                 <div class="form-page" style="display: none;">
                     <div class="form-group">
+                        <input type="text" id="role_user" name="role_user" value="Agent de livraison" hidden>
                         <label for="role_user">Rôle *</label>
                         <div>
-                            <input type="radio" id="role-agentlivr" name="role_user" value="agentlivr">
+                            <input type="radio" id="role-agentlivr" name="role_user" value="agentlivr" checked>
                             <label for="role-agentlivr">Agent de livraison</label>
                             <input type="radio" id="role-agentcoord" name="role_user" value="agentcoord">
                             <label for="role-agentcoord">Agent de coordination</label>
                         </div>
+                        <label for="cle_entreprise">Clé (fournie par votre entreprise) *</label>
+                        <input type="text" id="cle_entreprise" name="cle_entreprise" placeholder="Entrez votre clé" required>
                     </div>
                 </div>
 
@@ -77,6 +80,13 @@ function view_register(): void
             </form>
         </div>
     </body>
+    <script>
+        if (document.getElementById("role-agentlivr").checked = true;){
+            document.getElementById("role_user").value = "Agent de livraison";
+        } else if (document.getElementById("role-agentcoord").checked = true;){
+            document.getElementById("role_user").value = "Agent de coordination";
+        }
+    </script>
 
     </html>
 <?php
