@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once dirname(__DIR__, 1) . '/bdd.php';
 
 function creer_mouvement(): void
@@ -20,12 +22,8 @@ function creer_mouvement(): void
             $id_users_livr = $_POST['agentlivr-assigne'] ?? null;
             $id_users_coord = $_POST['agentcoord-assigne'] ?? null;
 
-            if (!$nomColis || !$dateDep || !$dateArr || !$adresseDep || !$adresseArr || !$id_users_livr || !$id_users_coord) {
-                throw new Exception("Les champs obligatoires ne sont pas remplis.");
-            }
-
             $pdo = Database::getConnection();
-
+                
             $queryColis = "
                 INSERT INTO colis 
                 (nom, date_dep, date_arr, informations, problemes, lieu_arrivee, lieu_depart, plaque) 
@@ -74,7 +72,7 @@ function creer_mouvement(): void
             echo "Mouvement créé avec succès.";
         }
     } catch (Exception $e) {
-        error_log($e->getMessage() . PHP_EOL, 3, '../../utils/logs/errors.log');
+        error_log($e->getMessage(), 3, '../logs/errors.log');
         echo "Erreur interne lors de la création du mouvement.";
     }
 }

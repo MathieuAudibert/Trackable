@@ -63,13 +63,6 @@ function route_request(): void
                 }
                 controller_creation_mouvement();
                 break;
-            case '/creation-mouvement/creer':
-                if ($_SESSION['connecte'] !== 'true' && $_SESSION['user']['role_user'] !== 'Agent de coordination') {
-                    header('Location: /login'); 
-                    exit();
-                }
-                creer_mouvement();
-                break;
             default:
                 controller_accueil();
                 break;

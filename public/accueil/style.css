@@ -48,4 +48,10 @@ body {
     padding: 10px;
 }
 
-
+#carte-plus button{
+    background-color: transparent;
+    border: none;
+    margin-left: 40%;
+    margin-top: 50%;
+    font-size: 40px;
+}

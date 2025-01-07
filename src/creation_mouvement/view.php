@@ -24,7 +24,7 @@ function view_creation_mouvement(array $agentcoord, array $agentlivr): void
         <hr>
     </head>
     <body>
-        <form id="creation_mouvement" action="/creation-mouvement/creer" method="post">
+        <form id="creation_mouvement" action="/utils/formulaires/creer_mvmt.php" method="post">
             <h1> Créer un mouvement </h1>
             <div id="formulaires-container">
                 <h2> Coté colis </h2>
