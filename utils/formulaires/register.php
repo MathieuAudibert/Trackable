@@ -9,7 +9,6 @@ if (empty($_POST)){
     header('Location: /register');
     exit();
 } else {
-    $id_users = rand(3,50);
     $email = $_POST['email'];
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
@@ -25,9 +24,8 @@ if (empty($_POST)){
 
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = $db->prepare('INSERT INTO users (id_users, email, nom, prenom, role_user, mdp, cle_entreprise) VALUES (:id_users, :email, :nom, :prenom, :role_user, :mdp, :cle_entreprise)');
+    $query = $db->prepare('INSERT INTO users (email, nom, prenom, role_user, mdp, cle_entreprise) VALUES (:email, :nom, :prenom, :role_user, :mdp, :cle_entreprise)');
     $query->execute([
-        'id_users' => $id_users,
         'email' => $email,
         'nom' => $nom,
         'prenom' => $prenom,
@@ -36,9 +34,8 @@ if (empty($_POST)){
         'cle_entreprise' => $cle_entreprise
     ]);
     
-    $query2 = $db->prepare('INSERT INTO log_trackable (id, user_id, action, datelog) VALUES (:id, :user_id, :action, NOW())');
+    $query2 = $db->prepare('INSERT INTO log_trackable (user_id, action, datelog) VALUES (:user_id, :action, NOW())');
     $query2->execute([
-        'id' => rand(1, 100),
         'user_id' => $id_users,
         'action' => 'Inscription'
     ]);

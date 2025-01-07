@@ -1,78 +1,75 @@
-<?php
-declare(strict_types=1);
+<?php 
+session_start();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 require_once dirname(__DIR__, 1) . '/bdd.php';
 
-function creer_mouvement(): void
-{
-    try {
-        if (!empty($_POST)) {
-            $nomColis = $_POST['nom-colis'] ?? null;
-            $dateDep = $_POST['datedep'] ?? null;
-            $dateArr = $_POST['datearr'] ?? null;
-            $adresseDep = $_POST['adresse-dep'] ?? null;
-            $adresseArr = $_POST['adresse-arr'] ?? null;
-            $infos = $_POST['infos'] ?? null;
-            $problemes = $_POST['problemes'] ?? null;
-            $plaque = $_POST['plaque'] ?? null;
-            $cleEntreprise = $_POST['cle-entreprise'] ?? null;
+if (empty($_POST)){
+    header('Location: /creation-mouvement');
+    exit();
+} else {
+    //gestion du posts
+    $nom_colis = $_POST['nom-colis'];
+    $date_dep = $_POST['datedep'];
+    $date_arr = $_POST['datearr'];
+    $adresse_dep = $_POST['adresse-dep'];
+    $adresse_arr = $_POST['adresse-arr'];
+    $etape = $_POST['etape'];
+    $infos = $_POST['infos'];
+    $problemes = $_POST['problemes'];
+    $cle_entreprise = $_POST['cle-entreprise'];
+    $agentcoord = $_POST['agentcoord-assigne'];
+    $agentlivr = $_POST['agentlivr-assigne'];
+    $plaque = $_POST['plaque'];
+    
 
-            $id_users_livr = $_POST['agentlivr-assigne'] ?? null;
-            $id_users_coord = $_POST['agentcoord-assigne'] ?? null;
+    $query = $db->prepare('INSERT INTO colis ( nom, date_dep, date_arr, informations, problemes, lieu_arrivee, lieu_depart, plaque, etape) VALUES (:nom, :date_dep, :date_arr, :informations, :problemes, :lieu_arrivee, :lieu_depart, :plaque, :etape)');
+    $query->execute([
+        'nom' => $nom_colis,
+        'date_dep' => $date_dep,
+        'date_arr' => $date_arr,
+        'informations' => $infos,
+        'problemes' => $problemes,
+        'lieu_arrivee' => $adresse_arr,
+        'lieu_depart' => $adresse_dep,
+        'plaque' => $plaque,
+        'etape' => $etape
+    ]);
+    $id_colis = $db->lastInsertId();
+    
+    $query2 = $db->prepare('INSERT INTO mouvement (colis_id, user_id) VALUES (:colis_id, :user_id)');
+    $query2->execute([
+        'colis_id' => $id_colis,
+        'user_id' => $agentcoord
+    ]);
+    $id_mouv_coord = $db->lastInsertId();
 
-            $pdo = Database::getConnection();
-                
-            $queryColis = "
-                INSERT INTO colis 
-                (nom, date_dep, date_arr, informations, problemes, lieu_arrivee, lieu_depart, plaque) 
-                VALUES 
-                (:nom, :date_dep, :date_arr, :informations, :problemes, :lieu_arrivee, :lieu_depart, :plaque)
-            ";
-            $stmtColis = $pdo->prepare($queryColis);
-            $stmtColis->bindParam(':nom', $nomColis);
-            $stmtColis->bindParam(':date_dep', $dateDep);
-            $stmtColis->bindParam(':date_arr', $dateArr);
-            $stmtColis->bindParam(':informations', $infos);
-            $stmtColis->bindParam(':problemes', $problemes);
-            $stmtColis->bindParam(':lieu_arrivee', $adresseArr);
-            $stmtColis->bindParam(':lieu_depart', $adresseDep);
-            $stmtColis->bindParam(':plaque', $plaque);
-            $stmtColis->execute();
+    $query3 = $db->prepare('INSERT INTO log_trackable (mouv_id, user_id, colis_id, action, datelog) VALUES (:mouv_id, :user_id, :colis_id, :action, NOW())');
+    $query3->execute([
+        'mouv_id' => $id_mouv_coord,
+        'user_id' => $_SESSION['user']['id_users'],
+        'colis_id' => $id_colis,
+        'action' => 'Creation d\'un mouvement agent coord'
+    ]);
 
-            $colisId = $pdo->lastInsertId();
+    $query4 = $db->prepare('INSERT INTO mouvement (colis_id, user_id) VALUES (:colis_id, :user_id)');
+    $query4->execute([
+        'colis_id' => $id_colis,
+        'user_id' => $agentlivr
+    ]);
+    $id_mouv_livr = $db->lastInsertId();
 
-            $queryMouvement = "
-                INSERT INTO mouvement 
-                (colis_id, user_id) 
-                VALUES 
-                (:colis_id, :user_id)
-            ";
-            $stmtMouvement = $pdo->prepare($queryMouvement);
-            $stmtMouvement->bindParam(':colis_id', $colisId);
-            $stmtMouvement->bindParam(':user_id', $id_users_coord);
-            $stmtMouvement->execute();
+    $query5 = $db->prepare('INSERT INTO log_trackable ( mouv_id, user_id, colis_id, action, datelog) VALUES ( :mouv_id, :user_id, :colis_id, :action, NOW())');
+    $query5->execute([
+        'mouv_id' => $id_mouv_livr,
+        'user_id' => $_SESSION['user']['id_users'],
+        'colis_id' => $id_colis,
+        'action' => 'Creation d\'un mouvement agent livr'
+    ]);
 
-            $mouvId = $pdo->lastInsertId();
-
-            $queryLog = "
-                INSERT INTO log_trackable 
-                (mouv_id, user_id, colis_id, action, datelog) 
-                VALUES 
-                (:mouv_id, :user_id, :colis_id, :action, NOW())
-            ";
-            $stmtLog = $pdo->prepare($queryLog);
-            $stmtLog->bindParam(':mouv_id', $mouvId);
-            $stmtLog->bindParam(':user_id', $id_users_coord);
-            $stmtLog->bindParam(':colis_id', $colisId);
-            $stmtLog->bindValue(':action', 'Création du mouvement');
-            $stmtLog->execute();
-
-            echo "Mouvement créé avec succès.";
-        }
-    } catch (Exception $e) {
-        error_log($e->getMessage(), 3, '../logs/errors.log');
-        echo "Erreur interne lors de la création du mouvement.";
-    }
+    header('Location: /form_success');
+    exit();
 }

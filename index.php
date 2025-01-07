@@ -18,7 +18,6 @@ require_once __DIR__ . '/src/register/controller.php';
 require_once __DIR__ . '/src/logout/controller.php';
 require_once __DIR__ . '/src/perfs/perf.php';
 require_once __DIR__ . '/src/creation_mouvement/controller.php';
-require_once __DIR__ . '/utils/formulaires/creer_mvmt.php';
 
 
 function route_request(): void
