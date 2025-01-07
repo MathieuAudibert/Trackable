@@ -70,7 +70,7 @@ function view_accueil(): void
                     </div>
                 <?php endforeach; ?>
                 <div class="carte" id="carte-plus">
-                    <button onclick="window.location.href='/creation_carte';">+</button>
+                    <button onclick="window.location.href='/creation-mouvement';">+</button>
                 </div>
             </div>
         <?php endif; ?>

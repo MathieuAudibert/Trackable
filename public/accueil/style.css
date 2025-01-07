@@ -46,8 +46,12 @@ body {
 .carte{
     background-color: #ddd;
     padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
 }
-
+#carte-plus {
+    cursor: pointer;
+}
 #carte-plus button{
     background-color: transparent;
     border: none;
