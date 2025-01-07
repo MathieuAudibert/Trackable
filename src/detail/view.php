@@ -37,22 +37,32 @@ function view_detail($data): void
     <div class="gros-rec">
     <div class="rectangle-infos">
         <?php foreach ($data as $colismvm) : ?>
+            <?php   
+            $nomlivre = $colismvm['nom'] . ' ' . $colismvm['prenom']; 
+            foreach ($_SESSION['gather_agents'] as $agent) {
+                if ($agent['role_user'] === 'Agent de livraison') {
+                    $nomlivre = $agent['nom'] . ' ' . $agent['prenom'];
+                }
+            }
+            ?>
             <h1>Detail du colis n° : <?php echo ($colismvm['id_colis']); ?></h1>
             <p>Nom du colis : <?php echo htmlspecialchars($colismvm['nom']); ?></p>
-            <p>Nom Prenom de l'agent de livraison : <?php echo htmlspecialchars($colismvm['user_nom']. ' ' .$colismvm['prenom']); ?></p>
-            <p>Nom Prenom de l'agent de coordination responsable : <?php echo htmlspecialchars('a'.'b'); ?></p>
+            <p>Nom Prenom de l'agent de livraison : <?php echo htmlspecialchars($nomlivre); ?></p>
+            <p>Nom Prenom de l'agent de coordination responsable : <?php echo htmlspecialchars($colismvm['user_nom']. ' ' .$colismvm['prenom'] ); ?></p>
             <p>Informations supplémentaires : <?php echo htmlspecialchars($colismvm['informations']); ?></p>
             <p>Problèmes encontrées : <?php echo htmlspecialchars($colismvm['problemes']); ?></p>
             <p>Adresse de départ : <?php echo htmlspecialchars($colismvm['lieu_depart']); ?></p>
             <p>Etape : <?php echo htmlspecialchars($colismvm['etape']); ?></p>
             <p>Adresse d'arrivée : <?php echo htmlspecialchars($colismvm['lieu_arrivee']); ?></p>
             <p>Plaque du véhicule : <?php echo htmlspecialchars($colismvm['plaque']); ?></p>
-
-        
-        <button id="modify">Modifier</button>
-        <?php if ($_SESSION['user']['role_user'] === 'Agent de coordination') : ?>
-            <button id="delete">Supprimer</button>
-        <?php endif; ?>
+            <?php if ($_SESSION['user']['role_user'] === 'Agent de coordination') : ?>
+                <form id="update" action="../../utils/formulaires/update_mvmt.php" method="post">
+                    <button id="modify">Modifier</button>
+                </form>
+                <form id="modify" action="../../utils/formulaires/delete_mvmt.php" method="post">
+                    <button id="delete">Supprimer</button>
+                </form>
+            <?php endif; ?>
         </div>
         <div class="rectangle-container">
             <div class="rectangle-heures">
@@ -64,7 +74,7 @@ function view_detail($data): void
                 <div id="map"></div>
             </div>
         </div>
-        <?php endforeach; ?>    
+        <?php endforeach; ?>   
     </div>
     </body>
     <script>
