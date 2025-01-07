@@ -37,7 +37,7 @@ function view_modifier_mouv(): void
                 <h1>Modifier un mouvement</h1>
                 
                 <label for="nom_colis">Nom du colis :</label>
-                <input type="text" id="nom_colis" name="nom_colis" value="<?php echo $_POST['nom'] ?>" readonly>
+                <input type="text" id="nom_colis" name="nom_colis" value="<?php echo $_POST['nom'] ?>" required>
                 
                 <label for="livreur">Nom et prénom de l'agent de livraison :</label>
                 <input type="text" id="livreur" name="livreur" value="<?php echo $_POST['nomlivr'] ?>" required>
@@ -45,12 +45,12 @@ function view_modifier_mouv(): void
                 <label for="coordination">Nom et prénom de l'agent de coordination responsable :</label>
                 <input type="text" id="coordination" name="coordination" value="<?php echo $_POST['nomcoor'] ?>" required>
                 
-                <label for="infos_sup">Informations supplémentaires :</label>
-                <textarea id="infos_sup" name="infos_sup" value="<?php echo $_POST['infos'] ?>" required></textarea>
+                <label for="infos">Informations :</label>
+                <input type="text" id="infos" name="infos" value="<?php echo $_POST['infos'] ?>" required>
                 
                 <label for="problemes">Problèmes rencontrés :</label>
-                <textarea id="problemes" name="problemes" value="<?php echo $_POST['problemes'] ?>" required></textarea>
-                
+                <input type="text" id="problemes" name="problemes" value="<?php echo $_POST['problemes'] ?>" required>
+
                 <label for="adresse_depart">Adresse de départ :</label>
                 <input type="text" id="adresse_depart" name="adresse_depart" value="<?php echo $_POST['lieu_depart'] ?>"  required>
                 
@@ -59,6 +59,12 @@ function view_modifier_mouv(): void
                 
                 <label for="adresse_arrivee">Adresse d'arrivée :</label>
                 <input type="text" id="adresse_arrivee" name="adresse_arrivee" value="<?php echo $_POST['lieu_arr'] ?>"  required>
+
+                <label for="date_dep">Date/heure de depart :</label>
+                <input type="datetime-local" id="date_dep" name="date_dep" value="<?php echo $_POST['date_dep'] ?>"  required>
+
+                <label for="date_arr">Date/heure d'arrivée :</label>
+                <input type="datetime-local" id="date_arr" name="date_arr" value="<?php echo $_POST['date_arr'] ?>"  required>
                 
                 <label for="plaque">Plaque du véhicule :</label>
                 <input type="text" id="plaque" name="plaque" value="<?php echo $_POST['plaque'] ?>"  required>
