@@ -59,9 +59,18 @@ function view_detail($data): void
             <p>Adresse d'arrivée : <?php echo htmlspecialchars($colismvm['lieu_arrivee']); ?></p>
             <p>Plaque du véhicule : <?php echo htmlspecialchars($colismvm['plaque']); ?></p>
             <?php if ($_SESSION['user']['role_user'] === 'Agent de coordination') : ?>
-                <form id="update" action="../../utils/formulaires/update_mvmt.php" method="POST">
+                <form id="update" action="/modifier-mouvement" method="POST">
                     <input type="hidden" name="id_mouv" value="<?php echo $colismvm['id_mouv']; ?>" hidden>
                     <input type="hidden" name="id_colis" value="<?php echo $colismvm['id_colis']; ?>" hidden>
+                    <input type="hidden" name="nom" value="<?php echo $colismvm['nom']; ?>" hidden>
+                    <input type="hidden" name="nomlivr" value="<?php echo $nomlivre ?>" hidden>
+                    <input type="hidden" name="nomcoor" value="<?php echo $colismvm['user_nom'] . ' ' . $colisnvm['prenom']; ?>" hidden>
+                    <input type="hidden" name="infos" value="<?php echo $colismvm['informations']; ?>" hidden>
+                    <input type="hidden" name="problemes" value="<?php echo $colismvm['problemes']; ?>" hidden>
+                    <input type="hidden" name="lieu_depart" value="<?php echo $colismvm['lieu_depart']; ?>" hidden>
+                    <input type="hidden" name="etape" value="<?php echo $colismvm['etape']; ?>" hidden>
+                    <input type="hidden" name="lieu_arr" value="<?php echo $colismvm['lieu_arrivee']; ?>" hidden>
+                    <input type="hidden" name="plaque" value="<?php echo $colismvm['plaque']; ?>" hidden>
                     <button type="submit">Modifier</button>
                 </form>
                 <form id="modify" action="../../utils/formulaires/delete_mvmt.php" method="POST">

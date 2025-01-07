@@ -21,6 +21,7 @@ require_once __DIR__ . '/src/perfs/logi.php';
 require_once __DIR__ . '/src/creation_mouvement/controller.php';
 require_once __DIR__ . '/utils/formulaires/form_succes.php';
 require_once __DIR__ . '/src/probleme/signaler.php';
+require_once __DIR__ . '/src/modifier_mouv/controller.php';
 
 
 function route_request(): void
@@ -59,6 +60,9 @@ function route_request(): void
                 break;
             case '/form_success':
                 form_success();
+                break;
+            case '/modifier-mouvement':
+                controller_modifier_mouv();
                 break;
             case '/creation-mouvement':
                 if ($_SESSION['connecte'] !== 'true' && $_SESSION['user']['role_user'] !== 'Agent de coordination') {

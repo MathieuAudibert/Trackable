@@ -34,6 +34,7 @@ function perf(): void
         <br>
         <hr>
         <br>
+        <p>gather mvmts</p>
         <?php var_dump($_SESSION['gather_mvmts']) ?>
         <br>
         <hr>
