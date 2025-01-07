@@ -36,6 +36,10 @@ function view_modifier_mouv(): void
             <form action="../../utils/formulaires/update_mvmt.php" method="POST">
                 <h1>Modifier un mouvement</h1>
                 
+                <input type="hidden" name="id_mouv" value="<?php echo $_POST['id_mouv']; ?>" hidden>
+                <input type="hidden" name="id_colis" value="<?php echo $_POST['id_colis']; ?>" hidden>
+                <input type="hidden" name="id_users" value="<?php echo $_SESSION['user']['id_users'] ?>">
+                
                 <label for="nom_colis">Nom du colis :</label>
                 <input type="text" id="nom_colis" name="nom_colis" value="<?php echo $_POST['nom'] ?>" required>
                 
@@ -68,6 +72,7 @@ function view_modifier_mouv(): void
                 
                 <label for="plaque">Plaque du véhicule :</label>
                 <input type="text" id="plaque" name="plaque" value="<?php echo $_POST['plaque'] ?>"  required>
+                
                 
                 <button type="submit">Modifier</button>
             </form>

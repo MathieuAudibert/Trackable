@@ -104,7 +104,7 @@ function view_detail($data): void
             attribution: '© OpenStreetMap'
         }).addTo(map);
 
-        let coordinates = [];
+        let coordonnes = [];
 
         function afficherVille(ville, label) {
             return fetch(`../../utils/detail/get_coordinates.php?ville=${ville}`)
