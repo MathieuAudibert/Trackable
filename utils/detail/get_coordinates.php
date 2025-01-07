@@ -1,29 +1,39 @@
 <?php
+$ville = $_GET['ville'] ?? '';
+$response = [];
+
+if ($ville) {
+    $url = "https://nominatim.openstreetmap.org/search?format=json&q=" . urlencode($ville);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Trackable');
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+    
+    $result = curl_exec($ch);
+
+    if ($result === false) {
+        $response = ['error' => 'Erreur lors de la requête CURL: ' . curl_error($ch)];
+    } else {
+        $data = json_decode($result, true);
+
+        if (!empty($data)) {
+            $response = [
+                'lat' => $data[0]['lat'],
+                'lon' => $data[0]['lon']
+            ];
+        } else {
+            $response = ['error' => 'Ville non trouvée'];
+        }
+    }
+
+    curl_close($ch);
+} else {
+    $response = ['error' => 'Ville non spécifiée'];
+}
+
 header('Content-Type: application/json');
-
-if (!isset($_GET['lieu_depart'])) {
-    echo json_encode(['error' => 'Pas de ville de depar']);
-    exit;
-}
-
-$ville = urlencode($_GET['lieu_depart']);
-$url = "https://nominatim.openstreetmap.org/search?q=$ville&format=json&limit=1";
-
-$rep = file_get_contents($url);
-if ($rep === false) {
-    echo json_encode(['error' => 'pas de coordonnees.']);
-    exit;
-}
-
-$data = json_decode($response, true);
-
-if (empty($data)) {
-    echo json_encode(['error' => "pas de coordonnees de : $ville"]);
-    exit;
-}
-
-echo json_encode([
-    'lat' => $data[0]['lat'],
-    'lon' => $data[0]['lon']
-]);
+echo json_encode($response);
 ?>

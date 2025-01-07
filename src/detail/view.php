@@ -56,11 +56,11 @@ function view_detail($data): void
             <p>Adresse d'arrivée : <?php echo htmlspecialchars($colismvm['lieu_arrivee']); ?></p>
             <p>Plaque du véhicule : <?php echo htmlspecialchars($colismvm['plaque']); ?></p>
             <?php if ($_SESSION['user']['role_user'] === 'Agent de coordination') : ?>
-                <form id="update" action="../../utils/formulaires/update_mvmt.php" method="post">
-                    <button id="modify">Modifier</button>
+                <form id="update" action="../../utils/formulaires/update_mvmt.php" method="POST">
+                    <button type="submit">Modifier</button>
                 </form>
-                <form id="modify" action="../../utils/formulaires/delete_mvmt.php" method="post">
-                    <button id="delete">Supprimer</button>
+                <form id="modify" action="../../utils/formulaires/delete_mvmt.php" method="POST">
+                    <button type="submit">Supprimer</button>
                 </form>
             <?php endif; ?>
         </div>
@@ -78,32 +78,55 @@ function view_detail($data): void
     </div>
     </body>
     <script>
-        let map = L.map('map').setView([48.8566, 2.3522], 6); // = paname
+        let map = L.map('map').setView([48.8566, 2.3522], 6);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
         }).addTo(map);
 
-        
-        function afficherVille(ville, label) {
-            fetch(`../../utils/get_coordinates.php?ville=${ville}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                console.error(data.error);
-                return;
-                }
+        let coordinates = [];
 
-                const coords = [parseFloat(data.lat), parseFloat(data.lon)];
-                L.marker(coords).addTo(map).bindPopup(`${label}: ${ville}`).openPopup();
-                map.setView(coords, 8);
-            })
-            .catch(error => console.error('Erreur:', error));
+        function afficherVille(ville, label) {
+            return fetch(`../../utils/detail/get_coordinates.php?ville=${ville}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error(data.error);
+                        return null;
+                    }
+
+                    const coords = [parseFloat(data.lat), parseFloat(data.lon)];
+                    L.marker(coords).addTo(map).bindPopup(`${label}: ${ville}`).openPopup();
+                    return coords;
+                })
+                .catch(error => console.error('Erreur:', error));
         }
-        afficherVille(villes.depart, 'Depart');
-        afficherVille(villes.arrivee, 'Arrivee');
+
+        const depart = "<?php echo htmlspecialchars($colismvm['lieu_depart']); ?>";
+        const etape = "<?php echo htmlspecialchars($colismvm['etape']); ?>";
+        const arrivee = "<?php echo htmlspecialchars($colismvm['lieu_arrivee']); ?>";
+
+        Promise.all([
+            afficherVille(depart, 'Départ'),
+            afficherVille(etape, 'Etape'),
+            afficherVille(arrivee, 'Arrivée')
+        ]).then(coords => {
+            const validCoords = coords.filter(coord => coord !== null);
+            
+            if (validCoords.length >= 2) {
+                const polyline = L.polyline(validCoords, {
+                    color: 'blue',
+                    weight: 3,
+                    opacity: 0.7
+                }).addTo(map);
+                
+                map.fitBounds(polyline.getBounds());
+            }
+        });
+
     </script>
+
 
 
     </html>
