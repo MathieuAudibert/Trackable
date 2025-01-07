@@ -15,10 +15,19 @@ function view_detail($data): void
         <link rel="stylesheet" href="public/header.css">
         <link rel="stylesheet" href="public/detail/style.css">
         <link rel="icon" type="image/x-icon" href="/public/images/truck-svgrepo-com.svg">
-        <div id="header">
-            <a href="/index.php"><img src="public\images\truck-svgrepo-com.svg" alt="logo" class="logo"></a>
-            <a href="/register"><button class="button">S'inscrire</button></a>
-        </div>
+        <?php if ($_SESSION['connecte'] === 'false') : ?>
+            <div id="header">
+                <a href="/index.php"><img src="\public\images\truck-svgrepo-com.svg" alt="logo" class="logo"></a>
+                <a href="/register"><button class="button">S'inscrire</button></a>
+                <a href="/login"><button id="secon" class="button">Se connecter</button></a>
+            </div>
+        <?php else : ?>
+            <div id="header">
+                <a href="/index.php"><img src="\public\images\truck-svgrepo-com.svg" alt="logo" class="logo"></a>
+                <p><?php echo $_SESSION['user']['prenom'] . ' ' . $_SESSION['user']['nom'] ?></p>
+                <a href="/logout"><button class="button">Se déconnecter</button></a>
+            </div>
+        <?php endif; ?>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <hr>
@@ -27,24 +36,27 @@ function view_detail($data): void
 
     <div class="gros-rec">
     <div class="rectangle-infos">
-        <?php foreach ($data as $row) : ?>
-            <h1>Detail du colis n° : <?php echo htmlspecialchars(($row['colisId'])); ?></h1>
-            <p>Nom du colis : <?php echo htmlspecialchars('a'); ?></p>
-            <p>Prenom de l'agent de livraison : <?php echo htmlspecialchars('a'); ?></p>
-            <p>Nom de l'agent de livraison : <?php echo htmlspecialchars('a'); ?></p>
-            <p>Prenom de l'agent de coordination responsable : <?php echo htmlspecialchars('a'); ?></p>
-            <p>Nom de l'agent de coordination responsable : <?php echo htmlspecialchars('a'); ?></p>
-            <p>Adresse de départ : <?php echo htmlspecialchars('a'); ?></p>
-            <p>Adresse de départ : <?php echo htmlspecialchars('a'); ?></p>
-            <p>Informations supplémentaires : <?php echo htmlspecialchars('a'); ?></p>
-            <p>Problèmes encontrées : <?php echo htmlspecialchars('a'); ?></p>
-            <p>Adresse de départ : <?php echo htmlspecialchars('a'); ?></p>
-            <p>Adresse d'arrivée : <?php echo htmlspecialchars('a'); ?></p>
-        <?php endforeach; ?>
+        <?php foreach ($data as $colismvm) : ?>
+            <h1>Detail du colis n° : <?php echo ($colismvm['id_colis']); ?></h1>
+            <p>Nom du colis : <?php echo htmlspecialchars($colismvm['nom']); ?></p>
+            <p>Nom Prenom de l'agent de livraison : <?php echo htmlspecialchars($colismvm['user_nom']. ' ' .$colismvm['prenom']); ?></p>
+            <p>Nom Prenom de l'agent de coordination responsable : <?php echo htmlspecialchars('a'.'b'); ?></p>
+            <p>Informations supplémentaires : <?php echo htmlspecialchars($colismvm['informations']); ?></p>
+            <p>Problèmes encontrées : <?php echo htmlspecialchars($colismvm['problemes']); ?></p>
+            <p>Adresse de départ : <?php echo htmlspecialchars($colismvm['lieu_depart']); ?></p>
+            <p>Etape : <?php echo htmlspecialchars($colismvm['etape']); ?></p>
+            <p>Adresse d'arrivée : <?php echo htmlspecialchars($colismvm['lieu_arrivee']); ?></p>
+            <p>Plaque du véhicule : <?php echo htmlspecialchars($colismvm['plaque']); ?></p>
+
+        
+        <button id="modify">Modifier</button>
+        <?php if ($_SESSION['user']['role_user'] === 'Agent de coordination') : ?>
+            <button id="delete">Supprimer</button>
+        <?php endif; ?>
         </div>
         <div class="rectangle-container">
             <div class="rectangle-heures">
-                <h1 id="gauche">Heure de départ : <?php echo htmlspecialchars('a')?></h1><h1 id="droite">Heure d'arrivée : <?php echo htmlspecialchars('b')?></h1>
+                <h1 id="gauche">Jour/Heure de départ : <?php echo htmlspecialchars($colismvm['date_dep'])?></h1><h1 id="droite">Jour/Heure d'arrivée : <?php echo htmlspecialchars($colismvm['date_arr'])?></h1>
             </div>
         
             <div class="rectangle-map">
@@ -52,6 +64,7 @@ function view_detail($data): void
                 <div id="map"></div>
             </div>
         </div>
+        <?php endforeach; ?>    
     </div>
     </body>
     <script>

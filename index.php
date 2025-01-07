@@ -38,12 +38,13 @@ function route_request(): void
             case '/register':
                 controller_register();
                 break;
-            case '/detail':
+            case '/detail?id='. $_GET['id']:
                 if ($_SESSION['connecte'] !== 'true') {
                     header('Location: /login');
                     exit();
                 }
-                controller_detail($_SESSION['colis_id_new']);
+                $id = $_GET['id'];
+                controller_detail($id);
                 break;
             case '/logout':
                 if ($_SESSION['connecte'] !== 'true') {

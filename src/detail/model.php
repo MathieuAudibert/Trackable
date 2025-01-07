@@ -4,36 +4,23 @@ declare(strict_types=1);
 
 require_once dirname(__DIR__, 2) . '/utils/bdd.php';
 
-function model_detail(int $colisId, int $userId): void
+function model_detail($colisId, $userId): array
 {
     try {
-        $db = Database::getConnection();
-        $db->beginTransaction();
-
-        $stmt = $db->prepare("
-            SELECT 
-                u.nom, u.prenom, u.email, u.id_users,
-                c.nom, c.date_dep, c.date_arr, 
-                c.lieu_depart, c.lieu_arrivee, c.problemes, c.informations , c.id_colis
-            FROM 
-                trackable.colis AS c
-            JOIN 
-                trackable.mouvement AS m ON m.colis_id = c.id_colis
-            JOIN 
-                trackable.users AS u ON u.id_users = m.user_id
-            WHERE 
-                c.id_colis = :colisId AND u.id_users = :userId
-        ");
-
-        $stmt->bindParam(':colisId', $colisId, PDO::PARAM_INT);
-        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $mvmts = [];
+        $pdo = Database::getConnection();
+        
+        $query = 'SELECT c.*, u.nom AS user_nom, u.prenom, u.email, u.role_user, u.cle_entreprise FROM colis AS c JOIN mouvement AS m ON c.id_colis = m.colis_id JOIN users as u ON u.id_users = m.user_id WHERE m.user_id = :user_id AND c.id_colis = :colis_id';
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':user_id', $_SESSION['user']['id_users']);
+        $stmt->bindParam(':colis_id', $colisId);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $db->commit();
+        $mvmts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        $_SESSION['gather_mvmts'] = $mvmts ?: []; 
+        return $mvmts;   
     } catch (Exception $e) {
-        $db->rollBack();
-        error_log($e->getMessage(), 3, dirname(__DIR__, 2) . '/utils/logs/errors.log');
+        error_log($e->getMessage(), 3, '../../utils/logs/errors.log');
         echo "Erreur : " . htmlspecialchars($e->getMessage());
     }
 }

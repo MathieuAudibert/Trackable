@@ -54,8 +54,7 @@ function view_accueil(): void
             <div id="mouvements-container">
                 <?php foreach($_SESSION['fetch_mvmts'] as $mvmt) : ?>
                     <div class="carte">
-                        <?php $_SESSION['colis_id_new'] = $mvmt['id_colis'] ?>
-                        <a href="/detail">
+                        <a href="/detail?id=<?php echo $mvmt['id_colis']; ?>">
                         <div class="titre-carte">
                             <h2>Colis n°<?php echo $mvmt['id_colis'] ?></h2>
                             <h3><?php echo $mvmt['nom'] ?></h3>
