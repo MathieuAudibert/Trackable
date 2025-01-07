@@ -14,19 +14,16 @@ if (empty($_POST)){
     $id_mouv = $_POST['id_mouv'];
     $id_colis = $_POST['id_colis'];
 
-    $query = "DELETE FROM log_trackable WHERE mouv_id = :id_mouv";
-    $query2="DELETE FROM mouvement WHERE id_mouv = :id_mouv";
-    $query3="DELETE FROM colis WHERE id_colis = :id_colis"; 
-    
+    $query = "DELETE FROM log_trackable WHERE mouv_id = :id_mouv AND colis_id = :id_colis";
     $stmt = $pdo->prepare($query);
-    $stmt->execute(['id_mouv' => $id_mouv]);
+    $stmt->execute([
+        'id_mouv' => $id_mouv,
+        'id_colis' => $id_colis
+    ]);
 
-    $stmt2 = $pdo->prepare($query2);
-    $stmt2->execute(['id_mouv' => $id_mouv]);
-
+    $query3 = "DELETE FROM colis WHERE id_colis = :id_colis"; 
     $stmt3 = $pdo->prepare($query3);
     $stmt3->execute(['id_colis' => $id_colis]);
-
 
     header('Location: /');
 }

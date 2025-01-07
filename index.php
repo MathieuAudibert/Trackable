@@ -44,14 +44,6 @@ function route_request(): void
             case '/signaler-un-probleme':
                 signaler_probleme();
                 break;
-            case '/detail?id='. $_GET['id']:
-                if ($_SESSION['connecte'] !== 'true') {
-                    header('Location: /login');
-                    exit();
-                }
-                $id = $_GET['id'];
-                controller_detail($id);
-                break;
             case '/logout':
                 if ($_SESSION['connecte'] !== 'true') {
                     header('Location: /login'); 
@@ -75,6 +67,14 @@ function route_request(): void
                 }
                 controller_creation_mouvement();
                 break;
+            case '/detail?id='. $_GET['id']:
+                if ($_SESSION['connecte'] !== 'true') {
+                    header('Location: /login');
+                    exit();
+                }
+                $id = $_GET['id'];
+                controller_detail($id);
+                break;  
             default:
                 controller_accueil();
                 break;

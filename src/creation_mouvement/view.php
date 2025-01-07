@@ -38,7 +38,7 @@ function view_creation_mouvement(array $agentcoord, array $agentlivr): void
                     <input type="text" id="adresse-arr" name="adresse-arr" placeholder="Adresse d'arrivée">
                     <input type="text" id="etape" name="etape" placeholder="etape">
                     <input type="text" id="infos" name="infos" placeholder="Informations supplémentaires">
-                    <input type="text" id="problemes" name="problemes" hidden>
+                    <input type="text" id="problemes" name="problemes" value="Non" hidden>
                 </div>
             </div>
             <div id="formulaire-users">
