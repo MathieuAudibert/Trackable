@@ -33,7 +33,7 @@ function view_detail($data): void
         <hr>
     </head>
     <body>
-
+    <button id="back" onclick="window.history.back()">↰ Retour</button>
     <div class="gros-rec">
     <div class="rectangle-infos">
         <?php foreach ($data as $colismvm) : ?>
@@ -56,7 +56,7 @@ function view_detail($data): void
         </div>
         <div class="rectangle-container">
             <div class="rectangle-heures">
-                <h1 id="gauche">Jour/Heure de départ : <?php echo htmlspecialchars($colismvm['date_dep'])?></h1><h1 id="droite">Jour/Heure d'arrivée : <?php echo htmlspecialchars($colismvm['date_arr'])?></h1>
+                <h2 id="gauche">Jour/Heure de départ : <?php echo htmlspecialchars($colismvm['date_dep'])?></h2><h2 id="droite">Jour/Heure d'arrivée : <?php echo htmlspecialchars($colismvm['date_arr'])?></h2>
             </div>
         
             <div class="rectangle-map">

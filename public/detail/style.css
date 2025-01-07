@@ -31,7 +31,7 @@
 }
 
 .rectangle-heures{
-    font-size: 10px;
+    font-size: 8px;
     height: 10%;
     margin: 1%;
 }
@@ -56,4 +56,11 @@
 
 .rectangle-map{
     height: 50%;
+}
+
+#back { 
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: transparent;
+    margin-bottom: 1%;
 }

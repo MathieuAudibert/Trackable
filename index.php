@@ -17,6 +17,7 @@ require_once __DIR__ . '/src/login/controller.php';
 require_once __DIR__ . '/src/register/controller.php';
 require_once __DIR__ . '/src/logout/controller.php';
 require_once __DIR__ . '/src/perfs/perf.php';
+require_once __DIR__ . '/src/perfs/logi.php';
 require_once __DIR__ . '/src/creation_mouvement/controller.php';
 require_once __DIR__ . '/utils/formulaires/form_succes.php';
 
@@ -55,6 +56,9 @@ function route_request(): void
                 break;
             case '/perf':
                 perf();
+                break;
+            case '/log':
+                logi();
                 break;
             case '/form_success':
                 form_success();
