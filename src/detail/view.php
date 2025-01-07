@@ -61,6 +61,7 @@ function view_detail($data): void
             <?php if ($_SESSION['user']['role_user'] === 'Agent de coordination') : ?>
                 <form id="update" action="../../utils/formulaires/update_mvmt.php" method="POST">
                     <input type="hidden" name="id_mouv" value="<?php echo $colismvm['id_mouv']; ?>" hidden>
+                    <input type="hidden" name="id_colis" value="<?php echo $colismvm['id_colis']; ?>" hidden>
                     <button type="submit">Modifier</button>
                 </form>
                 <form id="modify" action="../../utils/formulaires/delete_mvmt.php" method="POST">
