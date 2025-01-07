@@ -60,10 +60,12 @@ function view_detail($data): void
             <p>Plaque du véhicule : <?php echo htmlspecialchars($colismvm['plaque']); ?></p>
             <?php if ($_SESSION['user']['role_user'] === 'Agent de coordination') : ?>
                 <form id="update" action="../../utils/formulaires/update_mvmt.php" method="POST">
+                    <input type="hidden" name="id_mouv" value="<?php echo $colismvm['id_mouv']; ?>" hidden>
                     <button type="submit">Modifier</button>
                 </form>
                 <form id="modify" action="../../utils/formulaires/delete_mvmt.php" method="POST">
-                    <input type="text" name="id_mouv" value="<?php echo $colismvm['id_mouv']; ?>" hidden>
+                    <input type="hidden" name="id_mouv" value="<?php echo $colismvm['id_mouv']; ?>" hidden>
+                    <input type="hidden" name="id_colis" value="<?php echo $colismvm['id_colis']; ?>" hidden>
                     <button type="submit" name="id_colis" value="<?php echo $colismvm['id_colis']; ?>">Supprimer</button>
                 </form>
             <?php endif; ?>

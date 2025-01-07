@@ -34,6 +34,7 @@ function logi(): void
             <p><?php echo htmlspecialchars($log['action']) ?></p>
             <p><?php echo $log['datelog'] ?></p>
         <?php endforeach; ?>
+        <?php echo file_get_contents( "../../utils/logs/errors.log" ); ?>
     </body>
 
     </html>

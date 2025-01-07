@@ -11,7 +11,7 @@ function signaler_probleme(): void
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Trackable | Connexion</title>
+        <title>Trackable | Signaler un probleme</title>
         <link rel="stylesheet" href="/public/login/style.css">
         <link rel="stylesheet" href="/public/header.css">
         <link rel="icon" type="image/x-icon" href="/public/images/truck-svgrepo-com.svg">
@@ -32,7 +32,7 @@ function signaler_probleme(): void
     </head>
 
     <body>
-        <form id="" action="../../utils/formulaires/signaler_probleme.php" method="POST">
+        <form action="../../utils/formulaires/signaler_probleme.php" method="POST">
             <h1>Signaler un problème</h1>
             <input type="text" name="probleme" placeholder="Problème rencontré" required>
             <textarea name="informations" placeholder="Informations supplémentaires" required></textarea>
