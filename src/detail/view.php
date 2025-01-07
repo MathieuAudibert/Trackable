@@ -33,7 +33,7 @@ function view_detail($data): void
         <hr>
     </head>
     <body>
-    <button id="back" onclick="window.history.back()">↰ Retour</button>
+    <button id="back" onclick="window.location.href='/';">↰ Retour</button>
     <div class="gros-rec">
     <div class="rectangle-infos">
         <?php foreach ($data as $colismvm) : ?>
