@@ -55,6 +55,7 @@ function view_register(): void
                             <input type="radio" id="role-agentcoord" name="role_user" value="agentcoord">
                             <label for="role-agentcoord">Agent de coordination</label>
                         </div>
+                        <br>
                         <label for="cle_entreprise">Clé (fournie par votre entreprise) *</label>
                         <input type="text" id="cle_entreprise" name="cle_entreprise" placeholder="Entrez votre clé" required>
                     </div>
