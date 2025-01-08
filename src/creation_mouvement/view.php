@@ -64,7 +64,7 @@ function view_creation_mouvement(array $agentcoord, array $agentlivr): void
                                 <option value="<?= htmlspecialchars($agent['nom'] . ' ' . $agent['prenom']) ?>">
                                     <?= htmlspecialchars($agent['nom'] . ' ' . $agent['prenom']) ?>
                                 </option>
-                                <input type="text" id="agentcoord-assigne" name="agentcoord-assigne" hidden value="<?php echo $agent['id_users'] ?>">
+                                <input type="text" id="agentcoord-assigne" name="agentcoord-assigne" hidden value="<?php echo $agent['id_users'] ?? $_SESSION['user']['id_users']; ?>">
                             <?php endforeach; ?>
                         </select>
                     </fieldset>
